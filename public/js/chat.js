@@ -5,6 +5,8 @@
         e.preventDefault(); // prevents page reloading
         socket.emit("chat message", $("#message").val());
 
+        let user = window.localStorage.getItem("user");
+        console.log(user);
         // let username = localStorage.setItem("user", req.body.username);
         let spanUser = document.createElement("span");
         spanUser.append('Tấn "MVP" Tài');
