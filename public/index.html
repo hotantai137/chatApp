@@ -5,8 +5,11 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <!------ Include the above in your HEAD tag ---------->
     <link href="/css/style.css" type="text/css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="application/javascript" src="https://server/cookies.js"></script>
   </head>
   <body>
+    <h2>Hello <span id="user-name"></span></h2>
     <div class="chat_window">
     <div class="top_menu">
         <div class="buttons">
@@ -34,9 +37,15 @@
 </div>
 
     <script src="/js/socket.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
    <script src="https://cdn.jsdelivr.net/gh/rexeze/formatTimeStamp/src/index-cdn.js"></script>
     <script src="/js/chat.js"></script>
 
   </body>
 </html>
+<script>
+$(function(){
+  console.log("taiht");
+  Cookies.set('name', 'value');
+  console.log(Cookies.get('name'));
+})
+</script>

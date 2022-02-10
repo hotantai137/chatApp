@@ -2,7 +2,7 @@
 const express = require('express');
 
 //create a new express application
-const app = express()
+const app = express();
 
 //require the http module
 const http = require('http').Server(app)
@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 
 // require the socket.io module
-const io = require('socket.io');
+const io = require('socket.io');;
 var bodyParser = require('body-parser')
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -44,15 +44,17 @@ app.use(express.static(__dirname + "/public"));
 //To listen to messages
 socket.on('connection', (socket)=>{
     console.log('user connected');
+    // socket.broadcast.emit("received", { message: 'ssssss'  });
+    socket.on("disconnect", function() {
+      console.log("user disconnected");
+    });
+    socket.on("chat message", function(data) {
+      //broadcast message to everyone in port:5000 except yourself.
+      socket.broadcast.emit("received", data);
+  });
 });
 
 //wire up the server to listen to our port 500
 http.listen(port, ()=>{
     console.log('connected to port: '+ port)
-});
-
-socket.on("chat message", function(msg) {
-    console.log("message: "  +  msg);
-    //broadcast message to everyone in port:5000 except yourself.
-    socket.broadcast.emit("received", { message: msg  });
 });

@@ -1,9 +1,9 @@
+var  socket = io();
 (function() {
-    var  socket = io();
     $("form").submit(function(e) {
         let li = document.createElement("li");
         e.preventDefault(); // prevents page reloading
-        socket.emit("chat message", $("#message").val());
+        socket.emit("chat message", {userName: 'taiht', msg: $("#message").val()});
 
         let user = window.localStorage.getItem("user");
         console.log(user);
@@ -25,5 +25,16 @@
     
         return false;
       });
-    
-})();
+    socket.on("received", data  =>  {
+      let spanUser = document.createElement("span");
+      spanUser.append(data.userName);
+      // spanUser.append(username);
+      spanUser.style.color = 'green';
+      var  messages  =  document.getElementById("messages");
+      let  li  =  document.createElement("li");
+      messages.appendChild(li).append(spanUser);
+      messages.appendChild(li).append(document.createElement('br'));
+      messages.appendChild(li).append(data.msg);
+      
+    });
+})()
