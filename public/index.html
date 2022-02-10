@@ -6,7 +6,8 @@
 <!------ Include the above in your HEAD tag ---------->
     <link href="/css/style.css" type="text/css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="application/javascript" src="https://server/cookies.js"></script>
+    <!-- <script type="application/javascript" src="https://server/cookies.js"></script> -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
   </head>
   <body>
     <h2>Hello <span id="user-name"></span></h2>
@@ -45,7 +46,9 @@
 <script>
 $(function(){
   console.log("taiht");
-  Cookies.set('name', 'value');
-  console.log(Cookies.get('name'));
+  // Cookies.set('name', 'value');
+  // console.log(Cookies.get('name'));
+  $.cookie("geeksforgeeks", "It is the data of the cookie");
+  console.log($.cookie('geeksforgeeks'));
 })
 </script>
