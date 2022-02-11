@@ -51,7 +51,13 @@ socket.on('connection', (socket)=>{
     socket.on("chat message", function(data) {
       //broadcast message to everyone in port:5000 except yourself.
       socket.broadcast.emit("received", data);
-  });
+    });
+    //Someone is typing
+    socket.on("typing", data => { 
+      socket.broadcast.emit("notifyTyping", { username: data.username });
+    });
+    //when soemone stops typing
+    socket.on("stopTyping", (data) => { socket.broadcast.emit("notifyStopTyping", { username: data.username }); });
 });
 
 //wire up the server to listen to our port 500
